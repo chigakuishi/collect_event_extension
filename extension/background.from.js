@@ -62,7 +62,7 @@ setInterval(()=>{
 
   // データをリクエスト ボディに含めて送信する
   xmlHttpRequest.send( EncodeHTMLForm( data ) );
-}, 5*1000);
+}, 5*60*1000);
 
 const log = {};
 
