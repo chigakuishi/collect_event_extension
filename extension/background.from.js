@@ -46,16 +46,17 @@ setInterval(()=>{
   {
     let READYSTATE_COMPLETED = 4;
     let HTTP_STATUS_OK = 200;
+    console.log("length: ", JSON.stringify(buff).length, "B");
 
     if( this.readyState == READYSTATE_COMPLETED
      && this.status == HTTP_STATUS_OK )
     {
       console.log("send", JSON.stringify(buff));
-      buff=[];
     }
+    buff=[];
   }
 
-  xmlHttpRequest.open( 'POST', 'https://fdsa.jp/logger/' );
+  xmlHttpRequest.open( 'POST', 'https://re75.info/logger/' );
 
   // サーバに対して解析方法を指定する
   xmlHttpRequest.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
