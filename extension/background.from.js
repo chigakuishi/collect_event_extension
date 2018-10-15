@@ -1,15 +1,68 @@
+const conf = {
+  "data": true
+}
+
+let buff = [];
+
 Function.prototype.toJSON = Function.prototype.toString;
 function eventLogger(place){
   return function(...args){
     let args_ = Array.prototype.slice.call(arguments);
-    let log = {
-      time : new Date().getTime(),
-      place : place,
-      args : JSON.stringify(args_)
+    let log = {};
+    if(conf.data){
+      log = {
+        time : new Date().getTime(),
+        place : place,
+        args : JSON.stringify(args_)
+      }
+    }else{
+      args_ = args_.map(it => typeof(it));
+      log = {
+        time : new Date().getTime(),
+        place : place,
+        argsType : JSON.stringify(args_)
+      }
     }
-    console.log(log);
+    buff.push(log);
+    //console.log(log);
   }
 }
+function EncodeHTMLForm(data){
+  var params = [];
+  for(var name in data){
+    var value = data[name];
+    var param = encodeURIComponent(name).replace(/%20/g, '+')
+      + '=' + encodeURIComponent(value).replace(/%20/g, '+');
+    params.push(param);
+  }
+  return params.join('&');
+}
+
+setInterval(()=>{
+  let data = { data: JSON.stringify(buff) }; // POSTメソッドで送信するデータ
+
+  let xmlHttpRequest = new XMLHttpRequest();
+  xmlHttpRequest.onreadystatechange = function()
+  {
+    let READYSTATE_COMPLETED = 4;
+    let HTTP_STATUS_OK = 200;
+
+    if( this.readyState == READYSTATE_COMPLETED
+     && this.status == HTTP_STATUS_OK )
+    {
+      console.log("send", JSON.stringify(buff));
+      buff=[];
+    }
+  }
+
+  xmlHttpRequest.open( 'POST', 'https://fdsa.jp/logger/' );
+
+  // サーバに対して解析方法を指定する
+  xmlHttpRequest.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+
+  // データをリクエスト ボディに含めて送信する
+  xmlHttpRequest.send( EncodeHTMLForm( data ) );
+}, 5*1000);
 
 const log = {};
 
