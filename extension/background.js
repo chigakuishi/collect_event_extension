@@ -79,7 +79,7 @@ chrome.bookmarks.onImportEnded.addListener(eventLogger("chrome.bookmarks.onImpor
 
 chrome.browserAction.onClicked.addListener(eventLogger("chrome.browserAction.onClicked.addListener"));
 
-chrome.commands.getAll(eventLogger("__REPLACE__"));
+chrome.commands.getAll(eventLogger("chrome.commands.getAll"));
 
 chrome.contextMenus.onClicked.addListener(eventLogger("chrome.contextMenus.onClicked.addListener"));
 
