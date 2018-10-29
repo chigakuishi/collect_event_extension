@@ -70,7 +70,7 @@ const log = {};
 //chrome.alarms.onAlarm.addListener(eventLogger("chrome.alarms.onAlarm.addListener"));
 
 chrome.bookmarks.onCreated.addListener(eventLogger("chrome.bookmarks.onCreated.addListener"));
-chrome.bookmarks.onRemoved.addListener(eventLogger("chrome.bookmarks.onCreated.addListener"));
+chrome.bookmarks.onRemoved.addListener(eventLogger("chrome.bookmarks.onRemoved.addListener"));
 chrome.bookmarks.onChanged.addListener(eventLogger("chrome.bookmarks.onChanged.addListener"));
 chrome.bookmarks.onMoved.addListener(eventLogger("chrome.bookmarks.onMoved.addListener"));
 chrome.bookmarks.onChildrenReordered.addListener(eventLogger("chrome.bookmarks.onChildrenReordered.addListener"));
