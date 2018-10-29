@@ -1,16 +1,21 @@
 const conf = {
   "data": true
 }
-
+let extensionUserId = Math.random();
 let buff = [];
+let active = true;
 
 Function.prototype.toJSON = Function.prototype.toString;
 function eventLogger(place){
   return function(...args){
+    if(!active){
+      return;
+    }
     let args_ = Array.prototype.slice.call(arguments);
     let log = {};
     if(conf.data){
       log = {
+        userId : extensionUserId,
         time : new Date().getTime(),
         place : place,
         args : JSON.stringify(args_)
@@ -18,6 +23,7 @@ function eventLogger(place){
     }else{
       args_ = args_.map(it => typeof(it));
       log = {
+        userId : extensionUserId,
         time : new Date().getTime(),
         place : place,
         argsType : JSON.stringify(args_)
@@ -38,7 +44,10 @@ function EncodeHTMLForm(data){
   return params.join('&');
 }
 
-setInterval(()=>{
+const dataSend = ()=>{
+  if(!active){
+    return;
+  }
   let data = { data: JSON.stringify(buff) }; // POSTメソッドで送信するデータ
 
   let xmlHttpRequest = new XMLHttpRequest();
@@ -63,7 +72,26 @@ setInterval(()=>{
 
   // データをリクエスト ボディに含めて送信する
   xmlHttpRequest.send( EncodeHTMLForm( data ) );
-}, 5*60*1000);
+}
+
+setInterval( dataSend, 5*60*1000);
+
+let timer = null;
+chrome.browserAction.onClicked.addListener(tab =>{
+  timer && clearTimeout(timer);
+  if(active){
+    dataSend();
+    active = false;
+    timer = setTimeout(()=>{
+      active = true;
+      alert("実験データ収集を再開します");
+    }, 60*60*1000);
+    alert("実験データ収集を１時間無効にします");
+  }else{
+    active = true;
+    alert("実験データ収集を再開します");
+  }
+});
 
 const log = {};
 
@@ -77,7 +105,6 @@ chrome.bookmarks.onChildrenReordered.addListener(eventLogger("__REPLACE__"));
 chrome.bookmarks.onImportBegan.addListener(eventLogger("__REPLACE__"));
 chrome.bookmarks.onImportEnded.addListener(eventLogger("__REPLACE__"));
 
-chrome.browserAction.onClicked.addListener(eventLogger("__REPLACE__"));
 
 chrome.commands.getAll(eventLogger("__REPLACE__"));
 

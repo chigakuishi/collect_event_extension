@@ -1,5 +1,5 @@
 {
-  "name": "Example 0: Hello World in Console",
+  "name": "Rhenium Experience Extension",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "This is an example to print Hello World in Chrome console",
@@ -49,8 +49,7 @@
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
-    "default_title": "Google Mail",
-    "default_popup": "https://google.com/"
+    "default_title": "Stop or Start"
   },
   "commands": {
     "toggle-feature-foo": {
