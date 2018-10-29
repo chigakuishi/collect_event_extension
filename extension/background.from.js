@@ -70,7 +70,7 @@ const log = {};
 //chrome.alarms.onAlarm.addListener(eventLogger("__REPLACE__"));
 
 chrome.bookmarks.onCreated.addListener(eventLogger("chrome.bookmarks.onCreated.addListener"));
-chrome.bookmarks.onRemoved.addListener(eventLogger("chrome.bookmarks.onCreated.addListener"));
+chrome.bookmarks.onRemoved.addListener(eventLogger("chrome.bookmarks.onRemoved.addListener"));
 chrome.bookmarks.onChanged.addListener(eventLogger("__REPLACE__"));
 chrome.bookmarks.onMoved.addListener(eventLogger("__REPLACE__"));
 chrome.bookmarks.onChildrenReordered.addListener(eventLogger("__REPLACE__"));
@@ -112,6 +112,7 @@ chrome.identity.onSignInChanged.addListener(eventLogger("__REPLACE__"));;
 
 chrome.idle.onStateChanged.addListener(eventLogger("__REPLACE__"));
 
+if("input" in chrome){
 chrome.input.ime.onActivate.addListener(eventLogger("__REPLACE__"));
 chrome.input.ime.onDeactivated.addListener(eventLogger("__REPLACE__"));
 chrome.input.ime.onFocus.addListener(eventLogger("__REPLACE__"));
@@ -123,6 +124,7 @@ chrome.input.ime.onKeyEvent.addListener(eventLogger("__REPLACE__"));
 //chrome.input.ime.onSurroundingTextChanged.addListener(eventLogger("__REPLACE__"));
 chrome.input.ime.onReset.addListener(eventLogger("__REPLACE__"));
 chrome.input.ime.onCompositionBoundsChanged.addListener(eventLogger("__REPLACE__"));
+}
 
 chrome.instanceID.onTokenRefresh.addListener(eventLogger("__REPLACE__"));
 

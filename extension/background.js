@@ -112,6 +112,7 @@ chrome.identity.onSignInChanged.addListener(eventLogger("chrome.identity.onSignI
 
 chrome.idle.onStateChanged.addListener(eventLogger("chrome.idle.onStateChanged.addListener"));
 
+if("input" in chrome){
 chrome.input.ime.onActivate.addListener(eventLogger("chrome.input.ime.onActivate.addListener"));
 chrome.input.ime.onDeactivated.addListener(eventLogger("chrome.input.ime.onDeactivated.addListener"));
 chrome.input.ime.onFocus.addListener(eventLogger("chrome.input.ime.onFocus.addListener"));
@@ -123,6 +124,7 @@ chrome.input.ime.onKeyEvent.addListener(eventLogger("chrome.input.ime.onKeyEvent
 //chrome.input.ime.onSurroundingTextChanged.addListener(eventLogger("chrome.input.ime.onSurroundingTextChanged.addListener"));
 chrome.input.ime.onReset.addListener(eventLogger("chrome.input.ime.onReset.addListener"));
 chrome.input.ime.onCompositionBoundsChanged.addListener(eventLogger("chrome.input.ime.onCompositionBoundsChanged.addListener"));
+}
 
 chrome.instanceID.onTokenRefresh.addListener(eventLogger("chrome.instanceID.onTokenRefresh.addListener"));
 
