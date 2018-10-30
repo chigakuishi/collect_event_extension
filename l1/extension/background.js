@@ -1,5 +1,5 @@
 const conf = {
-  "data": true,
+  "data": false,
   "privacy": true,
 }
 let extensionUserId = Math.random();

@@ -1,6 +1,6 @@
 const conf = {
   "data": true,
-  "privacy": true,
+  "privacy": false,
 }
 let extensionUserId = Math.random();
 let buff = [];

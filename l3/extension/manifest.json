@@ -1,0 +1,96 @@
+{
+  "name": "Rhenium Experience Extension",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "This is an example to print Hello World in Chrome console",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [
+    "browsingData",
+    "bookmarks",
+    "contentSettings",
+    "contextMenus",
+    "cookies",
+    "debugger",
+    "declarativeContent",
+    "desktopCapture",
+    "downloads",
+    "fontSettings",
+    "history",
+    "idle",
+    "input",
+    "gcm",
+    "management",
+    "identity",
+    "notifications",
+    "pageCapture",
+    "printerProvider",
+    "privacy",
+    "proxy",
+    "sessions",
+    "storage",
+    "system.storage",
+    "tabCapture",
+    "tabs",
+    "topSites",
+    "ttsEngine",
+    "webNavigation",
+    "*://*/*"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Stop or Start"
+  },
+  "commands": {
+    "toggle-feature-foo": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Toggle feature foo"
+    },
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y",
+        "chromeos": "Ctrl+Shift+U",
+        "linux": "Ctrl+Shift+J"
+      }
+    },
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E",
+        "windows": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      }
+    }
+  },
+  "tts_engine": {
+    "voices": [
+      {
+        "voice_name": "Alice",
+        "lang": "en-US",
+        "event_types": ["start", "marker", "end"]
+      },
+      {
+        "voice_name": "Pat",
+        "lang": "en-US",
+        "event_types": ["end"]
+      }
+    ]
+  },
+  "omnibox": { "keyword" : "aaron" },
+  "icons": {
+    "16": "icons/icon16.png"
+  }
+}
